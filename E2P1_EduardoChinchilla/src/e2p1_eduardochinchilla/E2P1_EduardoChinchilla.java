@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class E2P1_EduardoChinchilla {
 
-    static ArrayList<Integer> num = new ArrayList<>();
+    static ArrayList<Numero> num = new ArrayList<>();
     static Scanner read = new Scanner(System.in);
-    private static int numCadena;
+    static Numero num2 = new Numero();
 
     public static void main(String[] args) {
         int x = 0;
@@ -98,21 +98,19 @@ public class E2P1_EduardoChinchilla {
                                 System.out.println("Ingrese el valor del numero decimal: ");
                                 numDecimal = read.nextInt();
                             }
-
+                            
                             Numero n = new Numero(base, numDecimal);
-                            System.out.println(n.decToBase(numDecimal));
-                            //int z = Integer.parseInt(numDecimal);
-                            num.add(numDecimal);
-
-                            System.out.println(num);
+                            num.add(n);
                             break;
                         }
                         case 2: {
+                            while (num.size()>0){
                             System.out.println("Eliminar ");
-                            System.out.println(num);
+                            System.out.println(impr());
                             System.out.println("Ingrese el indice a remover");
                             int opcion = read.nextInt();
                             num.remove(opcion);
+                            }
                             break;
                         }
                         case 3: {
@@ -137,13 +135,120 @@ public class E2P1_EduardoChinchilla {
 
                     switch (opcion) {
                         case 1: {
-
+                            System.out.println(impr());
+                            System.out.println("Ingrese el primer indice a hacer la suma");
+                            int op = read.nextInt();
+                            
+                            System.out.println("Ingrese el segundo indice a hacer la suma");
+                            int op2 = read.nextInt();
+                            
+                            if (num.get(op).getBase() == num.get(op2).getBase()){
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumapFinal = sumap1 + sumap2;
+                                num2.setBase(num.get(op).getBase());
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }
+                            else if(num.get(op).getBase() > num.get(op2).getBase()){
+                                String sDecimal = num.get(op2).baseToDec(num.get(op2).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op).getBase());
+                                int sumapFinal = sumap1+sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }else if(num.get(op2).getBase() > num.get(op).getBase()){
+                                String sDecimal = num.get(op).baseToDec(num.get(op).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op2).getBase());
+                                int sumapFinal = sumap1+sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }
+                            
                             break;
                         }
                         case 2: {
-                            break;
+                            System.out.println(impr());
+                            System.out.println("Ingrese el primer indice a hacer la resta");
+                            int op = read.nextInt();
+                            
+                            System.out.println("Ingrese el segundo indice a hacer la resta");
+                            int op2 = read.nextInt();
+                            
+                            if (num.get(op).getBase() == num.get(op2).getBase()){
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumapFinal = sumap1 - sumap2;
+                                num2.setBase(num.get(op).getBase());
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }
+                            else if(num.get(op).getBase() > num.get(op2).getBase()){
+                                String sDecimal = num.get(op2).baseToDec(num.get(op2).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op).getBase());
+                                int sumapFinal = sumap1-sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }else if(num.get(op2).getBase() > num.get(op).getBase()){
+                                String sDecimal = num.get(op).baseToDec(num.get(op).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op2).getBase());
+                                int sumapFinal = sumap1-sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showMessageDialog(null,sumaFinal);
+                            }
                         }
                         case 3: {
+                            System.out.println(impr());
+                            System.out.println("Ingrese el primer indice a hacer la suma");
+                            int op = read.nextInt();
+                            
+                            System.out.println("Ingrese el segundo indice a hacer la suma");
+                            int op2 = read.nextInt();
+                            
+                            if (num.get(op).getBase() == num.get(op2).getBase()){
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumapFinal = sumap1 * sumap2;
+                                num2.setBase(num.get(op).getBase());
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }
+                            else if(num.get(op).getBase() > num.get(op2).getBase()){
+                                String sDecimal = num.get(op2).baseToDec(num.get(op2).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op).getNumero(),num.get(op).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op).getBase());
+                                int sumapFinal = sumap1*sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }else if(num.get(op2).getBase() > num.get(op).getBase()){
+                                String sDecimal = num.get(op).baseToDec(num.get(op).getNumero());
+                                String sBase = num2.decToBase(Integer.parseInt(sDecimal));
+                                num2.setBase(num.get(op).getBase());
+                                int sumap1 = Integer.parseInt(num.get(op2).getNumero(),num.get(op2).getBase());
+                                int sumap2 = Integer.parseInt(sBase,num.get(op2).getBase());
+                                int sumapFinal = sumap1*sumap2;
+                                
+                                String sumaFinal = num2.decToBase(sumapFinal);
+                                JOptionPane.showConfirmDialog(null,sumaFinal);
+                            }
                             break;
                         }
                         case 4: {
@@ -160,5 +265,14 @@ public class E2P1_EduardoChinchilla {
             }
         }
 
+    }
+    public static String impr(){
+        String s = "";
+        for (int i = 0; i < num.size(); i++) {
+            s += i +")" +" " + num.get(i).getNumero()+ " Base " + num.get(i).getBase()+ " :"+ " " + num.get(i).baseToDec(num.get(i).getNumero()) + " "+"\n";
+        }
+        
+        
+        return s;
     }
 }
